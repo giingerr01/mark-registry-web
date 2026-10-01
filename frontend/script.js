@@ -69,6 +69,7 @@ async function load_students() {
 async function create_students() {
   const name = document.getElementById("name").value;
   const id = Number(document.getElementById("id").value);
+  const email_id = document.getElementById("email_id").value;
 
   const res = await fetch(`${API}/students/`, {
     method: "POST",
@@ -78,6 +79,7 @@ async function create_students() {
     body: JSON.stringify({
       id: id,
       name: name,
+      email_id: email_id,
       marks: []
     })
   });
