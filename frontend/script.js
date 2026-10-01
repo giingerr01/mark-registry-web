@@ -88,3 +88,27 @@ async function create_students() {
   }
   load_students();
 }
+
+async function to_remove_student() {
+  const studentId = Number(document.getElementById("Student-Id").value);
+
+  if (isNaN(studentId)) {
+    alert("Please fill in the student ID!")
+    return;
+  }
+
+  const payload = {
+    ID: studentId,
+  };
+
+  try {
+    const response = await fetch(`${API}/students/{student}/remove`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+  }
+
+}
