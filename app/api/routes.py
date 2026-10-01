@@ -29,13 +29,16 @@ def create_students(student: Student):
     return student
 
 
-@router.put("/student/{student_id}/marks", response_model=Student)
+@router.put("/students/{student_id}/marks", response_model=Student)
 def add_or_update_mark(student_id: int, mark: MarkEntry):
     students = load_students()
     for student in students:
         if student.id == student_id:
             for existing_mark in student.marks:
-                if existing_mark.subject.lower() == mark.subject.lower():
+                if (
+                    existing_mark.subject.strip().lower()
+                    == mark.subject.strip().lower()
+                ):
                     existing_mark.score = mark.score
                     save_students(students)
                     return student
