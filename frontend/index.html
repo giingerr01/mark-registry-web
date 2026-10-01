@@ -5,49 +5,48 @@
   <title>Mark Registry</title>
 </head>
 
-<!-- heading -->
-
-<body style="background-color: #121212; color: pink;" <body>
-  <h1> Student Registry (admin)</h1>
+<body style="background-color: #121212; color: pink;">
+  <!-- heading -->
+  <h1>Student Registry (admin)</h1>
   <hr>
   <button onclick="home()">Home</button>
+
+  <!-- create student -->
+  <h2>Add Student</h2>
+  <label for="name">Name:</label>
+  <input id="name" placeholder="Name" type="text" autocomplete="given-name" />
+  <label for="id">ID:</label>
+  <input id="id" type="number" placeholder="ID" />
+  <button onclick="create_students()">Add</button>
+
+  <hr>
+
+  <!-- load student -->
+  <h2>List all Students</h2>
+  <button onclick="load_students()">Load Students</button>
+  <ul id="student-list"></ul>
+
+  <hr>
+
+  <!-- add or update students marks -->
+  <h2>Update Marks</h2>
+  <label for="student-id">Student ID:</label>
+  <input id="student-id" placeholder="Enter student id" type="number" />
+  <label for="subject">Subject:</label>
+  <input id="subject" placeholder="Enter Subject" />
+  <label for="marks">Marks:</label>
+  <input id="marks" type="number" placeholder="Enter Marks" />
+  <button onclick="add_or_update_mark()">Add/update</button>
+
+  <hr>
+
+  <!-- remove students -->
+  <h2>Remove Student</h2>
+  <label for="delete_student-id">Student ID:</label>
+  <input id="delete_student-id" placeholder="Enter student Id" />
+  <button onclick="delete_student()">Remove</button>
+
+  <script src="script.js"></script>
 </body>
-
-<!-- create student -->
-<h2>Add Student</h2>
-<label for="firstName">Name:</label>
-<input id="name" placeholder="Name" type="text" autocomplete="given-name" />
-<label for="Id">ID:</label>
-<input id="id" type="number" placeholder="ID" />
-<button onclick="create_students()">Add
-</button>
-
-<hr>
-
-<!-- load student -->
-<h2>List all Students</h2>
-<button onclick="load_students()">Load Students</button>
-<ul id="student-list"></ul>
-<hr>
-<script src="script.js"></script>
-
-<!-- add or update students marks -->
-<h2>Update Marks</h2>
-<label for="student-id">Student ID:</label>
-<input id="student-id" placeholder="Enter student id" autocomplete="given-mark" />
-<label for="subject">Subject:</label>
-<input id="subject" placeholder="Enter Subject" autocomplete="given_subject" />
-<label for="marks">Marks:</label>
-<input id="marks" placeholder="Enter Marks" autocomplete="given-marks" />
-<button onclick="add_or_update_mark()">Add/update</button>
-
-<hr>
-<!-- remove students -->
-<h2>Update Marks</h2>
-<label for="Student-Id">Student ID</label>
-<input id="Student-Id" placeholder="Enter student Id" />
-<button onclick="to_remove_student()">Remove</button>
-
-
 
 </html>
