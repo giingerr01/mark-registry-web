@@ -1,57 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <title>Mark Registry</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background-color: #121212; color: pink;">
-  <!-- heading -->
-  <h1>Student Registry (admin)</h1>
-  <hr>
-  <button onclick="home()">Home</button>
+<body>
 
-  <!-- create student -->
-  <h2>Add Student</h2>
-  <label for="name">Name:</label>
-  <input id="name" placeholder="Name" type="text" autocomplete="given-name" />
-  <label for="id">Roll Number:</label>
-  <input id="id" type="number" placeholder="Roll number" />
-  <label for="email_id">Email:</label>
-  <input id="email_id" type="text" placeholder="Email" />
-  <button onclick="create_students(add_or_update_mark)">Add</button>
+  <!-- TITLE -->
+  <h1>Student Registry (Admin)</h1>
 
-  <hr>
+  <!-- ADD STUDENT -->
+  <div class="section">
+    <h2>Add Student</h2>
 
-  <!-- load student -->
-  <h2>List all Students</h2>
-  <button onclick="load_students()">Load Students</button>
-  <ul id="student-list"></ul>
+    <label>Name:</label>
+    <input id="name" type="text" placeholder="Enter name">
 
-  <hr>
+    <label>Roll Number:</label>
+    <input id="id" type="number" placeholder="Enter roll number">
 
-  <!-- add or update students marks -->
-  <h2>Update Marks</h2>
-  <label for="student-id">Roll Number:</label>
-  <input id="student-id" placeholder="Enter student id" type="number" />
+    <label>Email:</label>
+    <input id="email_id" type="text" placeholder="Enter email">
 
-  <label for="subject">Subject:</label>
-  <input id="subject" placeholder="Enter Subject" />
+    <button onclick="create_students()">Add Student</button>
 
-  <label for="marks">Marks:</label>
-  <input id="marks" type="number" placeholder="Enter Marks" />
+    <div id="message-add"></div>
+  </div>
 
-  <button onclick="add_or_update_mark()">Add/update</button>
+  <!-- LIST STUDENTS -->
+  <div class="section">
+    <h2>All Students</h2>
 
-  <hr>
+    <button onclick="load_students()">Load Students</button>
 
-  <!-- remove students -->
-  <h2>Remove Student</h2>
-  <label for="delete_student-id">Roll Number:</label>
-  <input id="delete_student-id" placeholder="Enter student Id" />
-  <button onclick="delete_student()">Remove</button>
+    <ul id="student-list"></ul>
+  </div>
 
+  <!-- UPDATE MARKS -->
+  <div class="section">
+    <h2>Update Marks</h2>
+
+    <label>Roll Number:</label>
+    <input id="student-id" type="number" placeholder="Enter student ID">
+
+    <label>Subject:</label>
+    <input id="subject" type="text" placeholder="Enter subject">
+
+    <label>Marks:</label>
+    <input id="marks" type="number" placeholder="Enter marks">
+
+    <button onclick="add_or_update_mark()">Add / Update Marks</button>
+
+    <div id="message-marks"></div>
+  </div>
+
+  <!-- DELETE STUDENT -->
+  <div class="section">
+    <h2>Delete Student</h2>
+
+    <label>Roll Number:</label>
+    <input id="delete-student-id" type="number" placeholder="Enter student ID">
+
+    <button onclick="delete_student()">Delete</button>
+
+    <div id="message-delete"></div>
+  </div>
+
+  <!-- JS -->
   <script src="script.js"></script>
+
 </body>
 
 </html>
