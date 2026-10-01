@@ -89,26 +89,42 @@ async function create_students() {
   load_students();
 }
 
-async function to_remove_student() {
-  const studentId = Number(document.getElementById("Student-Id").value);
+
+async function delete_student() {
+  const inputVal = document.getElementById("delete_student-id").value;
+  const studentId = parseInt(inputVal, 10);
 
   if (isNaN(studentId)) {
-    alert("Please fill in the student ID!")
+    alert("Please enter a valid numeric Student ID!");
     return;
   }
 
-  const payload = {
-    ID: studentId,
-  };
-
   try {
-    const response = await fetch(`${API}/students/{student}/remove`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
+    const response = await fetch(`${API}/students/${studentId}`, {
+      method: "DELETE"
     });
-  }
 
+    if (!response.ok) {
+      const errorData = await response.json();
+
+      // Extract detail string if array (FastAPI 422 error response structure)
+      let errorMessage = "Failed to delete student";
+      if (Array.isArray(errorData.detail)) {
+        errorMessage = errorData.detail.map(err => `${err.loc.join('.')}: ${err.msg}`).join(", ");
+      } else if (typeof errorData.detail === "string") {
+        errorMessage = errorData.detail;
+      }
+
+      throw new Error(errorMessage);
+    }
+
+    const data = await response.json();
+    alert(data.message);
+
+    document.getElementById("delete_student-id").value = "";
+    load_students();
+  } catch (error) {
+    console.error("Failed to delete student:", error);
+    alert(`Could not delete student: ${error.message}`);
+  }
 }
