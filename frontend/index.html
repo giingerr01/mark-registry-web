@@ -5,8 +5,12 @@
   <title>Mark Registry</title>
 </head>
 
-<body style="background-color: #121212; color: #e0e0e0;" <body>
-  <h1> Student Registry</h1>
+<!-- heading -->
+
+<body style="background-color: #121212; color: pink;" <body>
+  <h1> Student Registry (admin)</h1>
+  <hr>
+  <button onclick="home()">Home</button>
 </body>
 
 <!-- create student -->
@@ -19,15 +23,15 @@
 </button>
 
 <hr>
-<button onclick="home()">Home</button>
-<hr>
 
 <!-- load student -->
-<h2>Students</h2>
+<h2>List all Students</h2>
 <button onclick="load_students()">Load Students</button>
 <ul id="student-list"></ul>
+<hr>
 <script src="script.js"></script>
 
+<!-- add or update students marks -->
 <h2>Update Marks</h2>
 <label for="student-id">Student ID:</label>
 <input id="student-id" placeholder="Enter student id" autocomplete="given-mark" />
