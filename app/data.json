@@ -1,0 +1,12 @@
+[
+    {
+        "id": 11,
+        "name": "Adi",
+        "marks": [
+            {
+                "subject": "math",
+                "score": 100.0
+            }
+        ]
+    }
+]
