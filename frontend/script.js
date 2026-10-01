@@ -15,14 +15,30 @@ async function home() {
 
 //shows a list of whole sutdents present in the database
 async function load_students() {
-  const res = await fetch(`${API}/students/`);
-  const students = await res.json();
+  const response = await fetch(`${API}/students/`);
+  const students = await response.json();
+
+  students.sort((a, b) => a.id - b.id);
 
   const list = document.getElementById("student-list");
   list.innerHTML = "";
-  students.forEach(s => {
+
+  // marks.forEach(marks => {
+  //   const li = document.createElement("li");
+  //   li.innerHTML = `${marks.subject}`;
+  // })
+
+
+  students.forEach(student => {
     const li = document.createElement("li");
-    li.textContent = `${s.id} - ${s.name}`;
+    const markText = student.marks.length > 0 ? student.marks.map(mark => `${mark.subject}: ${mark.score}`).join(", ") : "No marks:";
+
+    li.innerHTML = `
+      <strong>Roll Number:</strong> ${student.id} <br>
+      <strong>Student Name:</strong> ${student.name} <br>
+      <strong>Marks:</strong> ${markText} <br>
+      <strong>Student Email:</strong> ${student.email_id} <br>
+    `;
     list.appendChild(li);
   });
 }
