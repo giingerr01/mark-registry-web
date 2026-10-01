@@ -48,8 +48,19 @@ def add_or_update_mark(student_id: int, mark: MarkEntry):
     raise HTTPException(status_code=404, detail="Student not found!")
 
 
-@router.put("/students/{student}/remove", response_model=Student)
-def to_remove_student(student_id: int):
-    rem_student = load_students()
-    if student_id in rem_student:
-        return {"available:", student_id}
+@router.delete("/students/{student_id}")
+def delete_student(student_id: int):
+    # load the existing student list from json
+    students = load_students()
+
+    target_student = next((s for s in students if s.id == student_id), None)
+    if not target_student:
+        raise HTTPException(status_code=404, detail="Student not found!!")
+
+    updated_students = [s for s in students if s.id != student_id]
+
+    save_students(updated_students)
+
+    return {
+        "message": f"Student'{target_student.name} (ID: {student_id} removed successfully"
+    }
