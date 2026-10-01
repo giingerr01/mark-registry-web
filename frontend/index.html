@@ -5,26 +5,38 @@
   <title>Mark Registry</title>
 </head>
 
-<body>
+<body style="background-color: #121212; color: #e0e0e0;" <body>
   <h1> Student Registry</h1>
 </body>
 
 <!-- create student -->
 <h2>Add Student</h2>
-<input id="name" placeholder="Name" />
+<label for="firstName">Name:</label>
+<input id="name" placeholder="Name" type="text" autocomplete="given-name" />
+<label for="Id">ID:</label>
 <input id="id" type="number" placeholder="ID" />
 <button onclick="create_students()">Add
 </button>
 
 <hr>
+<button onclick="home()">Home</button>
+<hr>
 
 <!-- load student -->
-
 <h2>Students</h2>
 <button onclick="load_students()">Load Students</button>
 <ul id="student-list"></ul>
 <script src="script.js"></script>
 
-</body>
+<h2>Update Marks</h2>
+<label for="student-id">Student ID:</label>
+<input id="student-id" placeholder="Enter student id" autocomplete="given-mark" />
+<label for="subject">Subject:</label>
+<input id="subject" placeholder="Enter Subject" autocomplete="given_subject" />
+<label for="marks">Marks:</label>
+<input id="marks" placeholder="Enter Marks" autocomplete="given-marks" />
+<button onclick="add_or_update_mark()">Add/update</button>
+
+
 
 </html>
