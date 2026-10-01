@@ -1,6 +1,6 @@
 const API = "http://127.0.0.1:8000/api";
 
-
+//Home :)
 async function home() {
   try {
     const response = await fetch(`${API}/`)
@@ -13,46 +13,7 @@ async function home() {
   }
 }
 
-async function add_or_update_mark() {
-  const studentId = document.getElementById("student-id").value;
-  const subject = document.getElementById("subject").value;
-  const marks = Number(document.getElementById("marks").value);
-
-  if (!studentId || !subject || isNaN(marks)) {
-    alert("Pleach fill in all the fields!!")
-    return;
-  }
-
-  const payload = {
-    subject: subject,
-    score: marks
-  };
-
-  try {
-    const response = await fetch(`${API}/students/${studentId}/marks`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-
-    });
-
-    if (!response.ok) {
-      throw new Error(errorData.detail || `${response.status}`);
-    }
-    const data = await response.json();
-    alert("Marks has been updated!")
-    console.log("Updated dat:", data);
-
-    document.getElementById("subject").value = "";
-    document.getElementById("marks").value = "";
-  } catch (error) {
-    console.error("Failed to update marks:", error);
-    alert("Could not update marks. Check console for details");
-  }
-}
-
+//shows a list of whole sutdents present in the database
 async function load_students() {
   const res = await fetch(`${API}/students/`);
   const students = await res.json();
@@ -66,6 +27,7 @@ async function load_students() {
   });
 }
 
+// function defined for creating studnets
 async function create_students() {
   const name = document.getElementById("name").value;
   const id = Number(document.getElementById("id").value);
@@ -90,8 +52,51 @@ async function create_students() {
   }
   load_students();
 }
+// add or update the data or detail of the students or their result
+async function add_or_update_mark() {
+  const studentId = document.getElementById("student-id").value;
+  const subject = document.getElementById("subject").value;
+  const score = Number(document.getElementById("marks").value);
 
+  if (!studentId || !subject || isNaN(score)) {
+    alert("Pleach fill in all the fields!!")
+    return;
+  }
 
+  const payload = {
+    subject: subject,
+    score: score
+  };
+
+  try {
+    const response = await fetch(`${API}/students/${studentId}/marks`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || `${response.status}`);
+    }
+
+    const data = await response.json();
+    alert("Marks has been updated!")
+    console.log("Updated dat:", data);
+
+    document.getElementById("subject").value = "";
+    document.getElementById("marks").value = "";
+  } catch (error) {
+    console.error("Failed to update marks:", error);
+    alert("Could not update marks. Check console for details");
+  }
+}
+
+//delete an student using their roll no.. for now only whole students gets deleted for now 
+//later will add the functionalaty to delted the subjects too!!
 async function delete_student() {
   const inputVal = document.getElementById("delete_student-id").value;
   const studentId = parseInt(inputVal, 10);
