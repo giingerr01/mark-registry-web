@@ -13,11 +13,17 @@ body {
 }
 
 h1 {
+  margin-bottom: 0px;
   color: #f9a8d4;
 }
 
 h2 {
   color: #93c5fd;
+}
+
+h3 {
+  color: #f9a8;
+  margin-top: 0px;
 }
 
 input {
