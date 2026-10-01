@@ -46,3 +46,10 @@ def add_or_update_mark(student_id: int, mark: MarkEntry):
             save_students(students)
             return student
     raise HTTPException(status_code=404, detail="Student not found!")
+
+
+@router.put("/students/{student}/remove", response_model=Student)
+def to_remove_student(student_id: int):
+    rem_student = load_students()
+    if student_id in rem_student:
+        return {"available:", student_id}
