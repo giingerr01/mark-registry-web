@@ -9,4 +9,5 @@ class MarkEntry(BaseModel):
 class Student(BaseModel):
     id: int
     name: str
+    email_id: str
     marks: list[MarkEntry] = Field(default_factory=list)
