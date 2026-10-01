@@ -1,6 +1,6 @@
-.venv
+.venv/
+node_modules/
 *__pycache__
-.venv
 .envrc
 .env
 app/data.json
