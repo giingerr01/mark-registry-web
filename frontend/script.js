@@ -6,10 +6,8 @@ async function home() {
     const response = await fetch(`${API}/`)
 
     const data = await response.json();
-    console.log(data.message);
-    alert(data.message);
+    showMessage(data.message);
   } catch (error) {
-    console.error("could not connect to the backend:", error);
   }
 }
 
@@ -22,11 +20,6 @@ async function load_students() {
 
   const list = document.getElementById("student-list");
   list.innerHTML = "";
-
-  // marks.forEach(marks => {
-  //   const li = document.createElement("li");
-  //   li.innerHTML = `${marks.subject}`;
-  // })
 
 
   students.forEach(student => {
@@ -74,7 +67,7 @@ async function add_or_update_mark() {
   const score = Number(document.getElementById("marks").value);
 
   if (!studentId || !subject || isNaN(score)) {
-    alert("Pleach fill in all the fields!!")
+    showMessage("Pleach fill in all the fields!!")
     return;
   }
 
@@ -105,8 +98,7 @@ async function add_or_update_mark() {
     document.getElementById("subject").value = "";
     document.getElementById("marks").value = "";
   } catch (error) {
-    console.error("Failed to update marks:", error);
-    alert("Could not update marks. Check console for details");
+    showMessage("Could not update marks. Check console for details");
   }
 }
 
@@ -117,7 +109,7 @@ async function delete_student() {
   const studentId = parseInt(inputVal, 10);
 
   if (isNaN(studentId)) {
-    alert("Please enter a valid numeric Student ID!");
+    showMessage("Please enter a valid numeric Student ID!");
     return;
   }
 
@@ -141,12 +133,23 @@ async function delete_student() {
     }
 
     const data = await response.json();
-    alert(data.message);
+    showMessage(data.message);
 
     document.getElementById("delete_student-id").value = "";
     load_students();
   } catch (error) {
     console.error("Failed to delete student:", error);
-    alert(`Could not delete student: ${error.message}`);
+    showMessage(`Could not delete student: ${error.message}`);
   }
+}
+
+function showMessage(text, type = "success") {
+  const box = document.getElementById("message-box");
+
+  box.textContent = text;
+  box.className = type;
+
+  setTimeout(() => {
+    box.textContent = "";
+  }, 3000);
 }
