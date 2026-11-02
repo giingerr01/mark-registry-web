@@ -1,5 +1,5 @@
 body {
-  background-color: grey;
+  background-color: darkslategrey;
   font-family: monospace;
 }
 
@@ -13,5 +13,3 @@ h3 {
   margin-top: 10px;
   color: whitesmoke;
 }
-
-section {}
