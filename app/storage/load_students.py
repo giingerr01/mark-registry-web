@@ -11,14 +11,12 @@ def load_students() -> list[Student]:
 
         students = []
         for db_student in db_students:
-            # Explicitly map and instantiate MarkEntry models so types match perfectly
             marks_list = [
                 MarkEntry(subject=m.subject, score=m.score) for m in db_student.marks
             ]
 
             students.append(
                 Student(
-                    # Wrap or cast values if the type checker complains about SQLAlchemy attributes
                     id=int(db_student.id),
                     name=str(db_student.name),
                     email_id=str(db_student.email_id),
