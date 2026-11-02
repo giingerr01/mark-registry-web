@@ -67,3 +67,7 @@ def delete_student(id: int):
     save_students(updated_students)
 
     return {"message": f"Student'{target_student.name} (ID: {id} removed successfully"}
+
+
+@router.delete("/students/subject")
+def delete_suject():
