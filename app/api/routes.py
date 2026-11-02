@@ -71,3 +71,4 @@ def delete_student(id: int):
 
 @router.delete("/students/subject")
 def delete_suject():
+    students = load_students()
