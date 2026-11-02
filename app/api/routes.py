@@ -69,6 +69,7 @@ def delete_student(id: int):
     return {"message": f"Student'{target_student.name} (ID: {id} removed successfully"}
 
 
-@router.delete("/students/subject")
+@router.delete("/students/{id}/subject/{subject}")
 def delete_suject():
     students = load_students()
+    # to be continued
