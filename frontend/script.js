@@ -151,27 +151,30 @@ async function delete_subject() {
     showMessage("Please enter a valid numeric Student ID!");
     return;
   }
-  const subject_name = document.getElementById("subject").value;
-  if (!subject_name) {
+  const subject = document.getElementById("subject_name").value;
+  if (!subject) {
     showMessage("Please enter a subject!")
   }
 
   try {
-    const res = await fetch(`${API}/students/${id}/subject/${subject}`, {
+    const res = await fetch(`${API}/students/${studentId}/subject/${subject}`, {
       method: "DELETE"
 
     });
 
     const pay = await res.json();
-    showMessage(pay.message)
+    showMessage(pay.message || pay.detail);
 
-    document.getElementById("delete_subject").value = "";
-    load_students();
+    if (res.ok) {
+      document.getElementById("student-id").value = "";
+      document.getElementById("subject").value = "";
+      load_students();
+    }
 
   }
   catch (error) {
     console.error("Failed to delete subject:", error);
-    showMessage(`Could Not delete subject: ${error.message}`);
+    showMessage(`Could not delete subject: ${error.message}`);
   }
 }
 
