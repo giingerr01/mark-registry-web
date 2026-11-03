@@ -143,6 +143,38 @@ async function delete_student() {
   }
 }
 
+async function delete_subject() {
+  const inputID = document.getElementById("student-id").value;
+  const studentId = parseInt(inputID, 10);
+
+  if (isNaN(studentId)) {
+    showMessage("Please enter a valid numeric Student ID!");
+    return;
+  }
+  const subject_name = document.getElementById("subject").value;
+  if (!subject_name) {
+    showMessage("Please enter a subject!")
+  }
+
+  try {
+    const res = await fetch(`${API}/students/${id}/subject/${subject}`, {
+      method: "DELETE"
+
+    });
+
+    const pay = await res.json();
+    showMessage(pay.message)
+
+    document.getElementById("delete_subject").value = "";
+    load_students();
+
+  }
+  catch (error) {
+    console.error("Failed to delete subject:", error);
+    showMessage(`Could Not delete subject: ${error.message}`);
+  }
+}
+
 function showMessage(text, type = "success") {
   const box = document.getElementById("message-box");
 
