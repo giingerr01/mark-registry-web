@@ -144,26 +144,26 @@ async function delete_student() {
 }
 
 async function delete_subject() {
-  const inputID = document.getElementById("student-id").value;
+  const inputID = document.getElementById("delete-student-id").value;
   const studentId = parseInt(inputID, 10);
 
   if (isNaN(studentId)) {
-    showMessage("Please enter a valid numeric Student ID!");
+    showMessage("Please enter a valid numeric Student ID!", "error");
     return;
   }
-  const subject = document.getElementById("subject_name").value;
+  const subject = document.getElementById("delete-subject-name").value;
   if (!subject) {
-    showMessage("Please enter a subject!")
+    showMessage("Please enter a subject!", "error");
+    return;
   }
 
   try {
-    const res = await fetch(`${API}/students/${studentId}/subject/${subject}`, {
+    const res = await fetch(`${API}/students/${studentId}/subject/${encodeURIComponent(subject.trim())}`, {
       method: "DELETE"
 
     });
-
     const pay = await res.json();
-    showMessage(pay.message || pay.detail);
+    showMessage(pay.message || pay.detail, res.ok ? "success" : "error");
 
     if (res.ok) {
       document.getElementById("student-id").value = "";
