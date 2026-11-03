@@ -66,10 +66,35 @@ def delete_student(id: int):
 
     save_students(updated_students)
 
-    return {"message": f"Student'{target_student.name} (ID: {id} removed successfully"}
+    return {"message": f"Student'{target_student.name} (ID: {id}) removed successfully"}
 
 
 @router.delete("/students/{id}/subject/{subject}")
-def delete_suject():
+def delete_suject(id: int, subject: str):
     students = load_students()
-    # to be continued
+
+    target_student = next((s for s in students if s.id != id), None)
+    if not target_student:
+        raise HTTPException(status_code=404, detail="Student not found!")
+
+    target_mark = next(
+        (
+            sub
+            for sub in target_student.marks
+            if sub.subject.strip().lower() == subject.strip().lower()
+        ),
+        None,
+    )
+
+    if not target_mark:
+        raise HTTPException(
+            status_code=404, detail="Subject not found for this student!"
+        )
+
+    target_student.marks.remove(target_mark)
+
+    save_students(students)
+
+    return {
+        "message": f"Subject '{subject}' removed successfully from student '{target_student.name}' (ID: {id})"
+    }
