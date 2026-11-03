@@ -71,17 +71,18 @@ def delete_student(id: int):
 
 @router.delete("/students/{id}/subject/{subject}")
 def delete_suject(id: int, subject: str):
+
     students = load_students()
 
-    target_student = next((s for s in students if s.id != id), None)
+    target_student = next((s for s in students if s.id == id), None)
     if not target_student:
         raise HTTPException(status_code=404, detail="Student not found!")
 
     target_mark = next(
         (
-            sub
-            for sub in target_student.marks
-            if sub.subject.strip().lower() == subject.strip().lower()
+            m
+            for m in target_student.marks
+            if m.subject.strip().lower() == subject.strip().lower()
         ),
         None,
     )
