@@ -1,4 +1,10 @@
 /* input box styling */
+body {
+  background: #e0e0e0;
+  height: 100vh;
+  font-family: sans-serif;
+}
+
 input {
   all: unset;
   padding: 15px;
@@ -16,9 +22,7 @@ input::placeholder {
   font-size: .9rem;
 }
 
-
 button {
-
   all: unset;
   padding: 12px;
   border: 2px solid transparent;
