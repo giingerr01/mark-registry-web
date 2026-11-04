@@ -1,22 +1,27 @@
-body {
-  background-color: #24373a;
-  font-family: monospace;
+/* input box styling */
+input {
+  all: unset;
+  padding: 15px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.088);
+  transition: border .3s ease-in-out;
 }
 
-h1 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: wheat;
+input:focus {
+  border-color: #1e1e1e;
 }
 
-h2 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  color: #cdd6f4;
-  font-family: monospace;
+input::placeholder {
+  font-size: .9rem;
 }
 
-h3 {
-  margin-top: 10px;
-  color: whitesmoke;
+
+button {
+
+  all: unset;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.088);
 }
