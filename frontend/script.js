@@ -23,15 +23,15 @@ async function load_students() {
 
 
   students.forEach(student => {
-    const li = document.createElement("li");
+    const list = document.createElement("li");
     const markText = student.marks.length > 0 ? student.marks.map(mark => `<li>${mark.subject}: ${mark.score}</li>`).join(" ") : "No marks:";
-    li.innerHTML = `
+    list.innerHTML = `
       <strong>Roll Number:</strong> ${student.id} <br>
       <strong>Name:</strong> ${student.name} <br>
       <strong>Email:</strong> ${student.email_id} <br>
       <ul>${markText}</ul>
     `;
-    list.appendChild(li);
+    list.appendChild(list);
   });
 }
 
