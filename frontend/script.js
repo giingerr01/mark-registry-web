@@ -48,6 +48,7 @@ async function create_students() {
   const id = Number(document.getElementById("id").value);
   const email_id = document.getElementById("email_id").value;
 
+  //blank input fields check
   if (!name || isNaN(id) || email_id) {
     showMessage("Please fill in all the fields!");
     return;
@@ -70,7 +71,7 @@ async function create_students() {
     alert(err.detail);
     return;
   }
-  load_students();
+  // load_students();
 }
 // add or update the data or detail of the students or their result
 async function add_or_update_mark() {
@@ -114,8 +115,6 @@ async function add_or_update_mark() {
   }
 }
 
-//delete an student using their roll no.. for now only whole students gets deleted for now 
-//later will add the functionalaty to delted the subjects too!!
 async function delete_student() {
   const inputVal = document.getElementById("delete_student-id").value;
   const studentId = parseInt(inputVal, 10);
@@ -148,7 +147,7 @@ async function delete_student() {
     showMessage(data.message);
 
     document.getElementById("delete_student-id").value = "";
-    load_students();
+    // load_students();
   } catch (error) {
     console.error("Failed to delete student:", error);
     showMessage(`Could not delete student: ${error.message}`);
@@ -180,7 +179,7 @@ async function delete_subject() {
     if (res.ok) {
       document.getElementById("student-id").value = "";
       document.getElementById("subject").value = "";
-      load_students();
+      // load_students();
     }
 
   }
