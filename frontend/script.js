@@ -13,26 +13,33 @@ async function home() {
 
 //shows a list of whole sutdents present in the database
 async function load_students() {
-  const response = await fetch(`${API}/students/`);
-  const students = await response.json();
+  try {
+    const response = await fetch(`${API}/students/`);
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+    const students = await response.json();
 
-  students.sort((a, b) => a.id - b.id);
+    students.sort((a, b) => a.id - b.id);
 
-  const li = document.getElementById("student-list");
-  li.innerHTML = "";
+    const studentList = document.getElementById("student-list");
+    studentList.innerHTML = "";
 
-
-  students.forEach(student => {
-    const list = document.createElement("li");
-    const markText = student.marks.length > 0 ? student.marks.map(mark => `<li>${mark.subject}: ${mark.score}</li>`).join(" ") : "No marks:";
-    list.innerHTML = `
-      <strong>Roll Number:</strong> ${student.id} <br>
-      <strong>Name:</strong> ${student.name} <br>
-      <strong>Email:</strong> ${student.email_id} <br>
-      <ul>${markText}</ul>
-    `;
-    list.appendChild(list);
-  });
+    students.forEach(student => {
+      const list = document.createElement("li");
+      const markText = student.marks.length > 0 ? student.marks.map(mark => `<li>${mark.subject}: ${mark.score}</li>`).join(" ") : "No marks:";
+      list.innerHTML = `
+        <strong>Roll Number:</strong> ${student.id} <br>
+        <strong>Name:</strong> ${student.name} <br>
+        <strong>Email:</strong> ${student.email_id} <br>
+        <ul>${markText}</ul>
+      `;
+      studentList.appendChild(list);
+    });
+  } catch (error) {
+    console.error("Failed to load students:", error);
+    showMessage(`Could not load students: ${error.message}`, "error");
+  }
 }
 
 // function defined for creating studnets
