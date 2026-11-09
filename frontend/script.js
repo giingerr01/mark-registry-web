@@ -18,8 +18,8 @@ async function load_students() {
 
   students.sort((a, b) => a.id - b.id);
 
-  const list = document.getElementById("student-list");
-  list.innerHTML = "";
+  const li = document.getElementById("student-list");
+  li.innerHTML = "";
 
 
   students.forEach(student => {
