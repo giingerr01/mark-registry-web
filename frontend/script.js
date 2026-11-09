@@ -48,6 +48,11 @@ async function create_students() {
   const id = Number(document.getElementById("id").value);
   const email_id = document.getElementById("email_id").value;
 
+  if (!name || isNaN(id) || email_id) {
+    showMessage("Please fill in all the fields!");
+    return;
+  }
+
   const res = await fetch(`${API}/students/`, {
     method: "POST",
     headers: {
